@@ -1,26 +1,37 @@
 package com.aspose.barcode.api;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.aspose.barcode.model.BarcodeReader;
+import com.aspose.barcode.model.BarcodeResponseList;
+import com.aspose.barcode.model.ResponseMessage;
+import com.aspose.barcode.model.SaaSposeResponse;
 import com.aspose.client.ApiException;
 import com.aspose.client.ApiInvoker;
 import com.aspose.client.ApiInvokerResponse;
-
-import com.aspose.barcode.model.ResponseMessage;
-import com.aspose.barcode.model.BarcodeResponseList;
-import com.aspose.barcode.model.BarcodeReader;
-import com.aspose.barcode.model.SaaSposeResponse;
-import com.sun.jersey.multipart.FormDataMultiPart;
-
-import javax.ws.rs.core.MediaType;
-
-import java.io.File;
-import java.util.*;
 
 public class BarcodeApi {
   String basePath = "http://api.aspose.com/v1.1";
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
   ApiInvokerResponse response = null;
 
-  public ApiInvoker getInvoker() {
+  
+    public BarcodeApi(String basePath, String apiKey, String appSid) {
+
+        this.basePath = basePath;
+        apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+        apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+    }
+
+    public BarcodeApi(String apiKey, String appSid) {
+
+        apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+        apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+    }
+
+    public ApiInvoker getInvoker() {
     return apiInvoker;
   }
   
@@ -32,7 +43,6 @@ public class BarcodeApi {
     return basePath;
   }
 
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetBarcodeGenerate
 	* Generate barcode.
@@ -50,42 +60,43 @@ public class BarcodeApi {
   public ResponseMessage GetBarcodeGenerate (String text, String type, String format, Float resolutionX, Float resolutionY, Float dimensionX, Float dimensionY, String enableChecksum) {
     Object postBody = null;
     // create path and map variables
-    String path = "/barcode/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;toFormat={toFormat}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;enableChecksum={enableChecksum}".replaceAll("\\{format\\}","json");
+    String resourcePath = "/barcode/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;format={format}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;enableChecksum={enableChecksum}";    
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    
+    String method = "GET";
+    String contentType = "application/json";
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
-
-    if(text!=null)
-      queryParams.put("text", String.valueOf(text));
-    if(type!=null)
-      queryParams.put("type", String.valueOf(type));
-    if(format!=null)
-      queryParams.put("format", String.valueOf(format));
-    if(resolutionX!=null)
-      queryParams.put("resolutionX", String.valueOf(resolutionX));
-    if(resolutionY!=null)
-      queryParams.put("resolutionY", String.valueOf(resolutionY));
-    if(dimensionX!=null)
-      queryParams.put("dimensionX", String.valueOf(dimensionX));
-    if(dimensionY!=null)
-      queryParams.put("dimensionY", String.valueOf(dimensionY));
-    if(enableChecksum!=null)
-      queryParams.put("enableChecksum", String.valueOf(enableChecksum));
-    String[] contentTypes = {
-      "application/json"};
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
+    
+    
+    if(text!=null){
+      resourcePath = resourcePath.replace("{text}", apiInvoker.toPathValue(text));}
+    
+    if(type!=null){
+      resourcePath = resourcePath.replace("{type}", apiInvoker.toPathValue(type));}
+    
+    if(format!=null){
+      resourcePath = resourcePath.replace("{format}", apiInvoker.toPathValue(format));}
+    
+    if(resolutionX!=null){
+      resourcePath = resourcePath.replace("{resolutionX}", apiInvoker.toPathValue(resolutionX));}
+    
+    if(resolutionY!=null){
+      resourcePath = resourcePath.replace("{resolutionY}", apiInvoker.toPathValue(resolutionY));}
+    
+    if(dimensionX!=null){
+      resourcePath = resourcePath.replace("{dimensionX}", apiInvoker.toPathValue(dimensionX));}
+    
+    if(dimensionY!=null){
+      resourcePath = resourcePath.replace("{dimensionY}", apiInvoker.toPathValue(dimensionY));}
+    
+    if(enableChecksum!=null){
+        resourcePath = resourcePath.replace("{enableChecksum}", apiInvoker.toPathValue(enableChecksum));}
+    
     try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+		response = apiInvoker.invokeAPI(basePath, resourcePath, method, queryParams, postBody, headerParams, null, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -96,7 +107,7 @@ public class BarcodeApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
+
   /**
 	* GetBarcodeRecognize
 	* Recognize barcode from a file on server.
@@ -122,51 +133,59 @@ public class BarcodeApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/barcode/{name}/recognize/?appSid={appSid}&amp;type={type}&amp;checksumValidation={checksumValidation}&amp;stripFnc={stripFnc}&amp;rotationAngle={rotationAngle}&amp;barcodesCount={barcodesCount}&amp;rectX={rectX}&amp;rectY={rectY}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;storage={storage}&amp;folder={folder}".replaceAll("\\{format\\}","json");
+    String resourcePath = "/barcode/{name}/recognize/?appSid={appSid}&amp;type={type}&amp;checksumValidation={checksumValidation}&amp;stripFnc={stripFnc}&amp;rotationAngle={rotationAngle}&amp;barcodesCount={barcodesCount}&amp;rectX={rectX}&amp;rectY={rectY}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;storage={storage}&amp;folder={folder}";
 
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    
+    String method = "GET";
+    String contentType = "application/json";
+    
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    
 
-    if(name!=null)
-      queryParams.put("name", String.valueOf(name));
-    if(type!=null)
-      queryParams.put("type", String.valueOf(type));
-    if(checksumValidation!=null)
-      queryParams.put("checksumValidation", String.valueOf(checksumValidation));
-    if(stripFnc!=null)
-      queryParams.put("stripFnc", String.valueOf(stripFnc));
-    if(rotationAngle!=null)
-      queryParams.put("rotationAngle", String.valueOf(rotationAngle));
-    if(barcodesCount!=null)
-      queryParams.put("barcodesCount", String.valueOf(barcodesCount));
-    if(rectX!=null)
-      queryParams.put("rectX", String.valueOf(rectX));
-    if(rectY!=null)
-      queryParams.put("rectY", String.valueOf(rectY));
-    if(rectWidth!=null)
-      queryParams.put("rectWidth", String.valueOf(rectWidth));
-    if(rectHeight!=null)
-      queryParams.put("rectHeight", String.valueOf(rectHeight));
-    if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
-    if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
-    String[] contentTypes = {
-      "application/json"};
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
+    if(name!=null){
+        resourcePath = resourcePath.replace("{name}", apiInvoker.toPathValue(name));}
+    
+    if(type!=null){
+        resourcePath = resourcePath.replace("{name}", apiInvoker.toPathValue(name));}
+    
+    if(checksumValidation!=null){
+        resourcePath = resourcePath.replace("{checksumValidation}", apiInvoker.toPathValue(checksumValidation));}
+    
+    if(stripFnc!=null){
+        resourcePath = resourcePath.replace("{stripFnc}", apiInvoker.toPathValue(stripFnc));}
+    
+    if(rotationAngle!=null){
+        resourcePath = resourcePath.replace("{rotationAngle}", apiInvoker.toPathValue(rotationAngle));}
+    
+    if(barcodesCount!=null){
+        resourcePath = resourcePath.replace("{barcodesCount}", apiInvoker.toPathValue(barcodesCount));}
+    
+    if(rectX!=null){
+        resourcePath = resourcePath.replace("{rectX}", apiInvoker.toPathValue(rectX));}
+        
+    if(rectY!=null){
+        resourcePath = resourcePath.replace("{rectY}", apiInvoker.toPathValue(rectY));}
+        
+    if(rectWidth!=null){
+        resourcePath = resourcePath.replace("{rectWidth}", apiInvoker.toPathValue(rectWidth));}
+        
+    if(rectHeight!=null){
+        resourcePath = resourcePath.replace("{rectHeight}", apiInvoker.toPathValue(rectHeight));}
+        
+    if(storage!=null){
+        resourcePath = resourcePath.replace("{storage}", apiInvoker.toPathValue(storage));}
+        
+    if(folder!=null){
+        resourcePath = resourcePath.replace("{folder}", apiInvoker.toPathValue(folder));}
+    
     try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+        
+		response = apiInvoker.invokeAPI(basePath, resourcePath, method, queryParams, postBody, headerParams, null, contentType);
 		return (BarcodeResponseList) ApiInvoker.deserialize(response, "", BarcodeResponseList.class);
+		
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
       	throw new ApiException(404, "");
@@ -176,7 +195,6 @@ public class BarcodeApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostBarcodeRecognizeFromUrlorContent
 	* Recognize barcode from an url.
@@ -196,38 +214,35 @@ public class BarcodeApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/barcode/recognize/?appSid={appSid}&amp;type={type}&amp;checksumValidation={checksumValidation}&amp;stripFnc={stripFnc}&amp;rotationAngle={rotationAngle}&amp;url={url}".replaceAll("\\{format\\}","json");
+    String resourcePath = "/barcode/recognize/?appSid={appSid}&amp;type={type}&amp;checksumValidation={checksumValidation}&amp;stripFnc={stripFnc}&amp;rotationAngle={rotationAngle}&amp;url={url}";
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    
+    String method = "POST";
+    String contentType = "application/json";
 
+    
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    if(type!=null)
-      queryParams.put("type", String.valueOf(type));
-    if(checksumValidation!=null)
-      queryParams.put("checksumValidation", String.valueOf(checksumValidation));
-    if(stripFnc!=null)
-      queryParams.put("stripFnc", String.valueOf(stripFnc));
-    if(rotationAngle!=null)
-      queryParams.put("rotationAngle", String.valueOf(rotationAngle));
-    if(url!=null)
-      queryParams.put("url", String.valueOf(url));
-    String[] contentTypes = {
-      "multipart/form-data"};
+    if(type!=null){
+        resourcePath = resourcePath.replace("{type}", apiInvoker.toPathValue(type));}
+    
+    if(checksumValidation!=null){
+        resourcePath = resourcePath.replace("{checksumValidation}", apiInvoker.toPathValue(checksumValidation));}
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
-      mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
-        postBody = mp;
-    }
+    if(stripFnc!=null){
+        resourcePath = resourcePath.replace("{stripFnc}", apiInvoker.toPathValue(stripFnc));}
+        
+    if(rotationAngle!=null){
+        resourcePath = resourcePath.replace("{rotationAngle}", apiInvoker.toPathValue(rotationAngle));}
+        
+    if(url!=null){
+        resourcePath = resourcePath.replace("{url}", apiInvoker.toPathValue(url));}
+    
     try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+		response = apiInvoker.invokeAPI(basePath, resourcePath, method, queryParams, postBody, headerParams, formParams, contentType);
 		return (BarcodeResponseList) ApiInvoker.deserialize(response, "", BarcodeResponseList.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -238,7 +253,6 @@ public class BarcodeApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PutBarcodeGenerateFile
 	* Generate barcode and save on server.
@@ -265,85 +279,100 @@ public class BarcodeApi {
 	* @param enableChecksum	String	Sets if checksum will be generated.
 	* @param storage	String	Image's storage.
 	* @param folder	String	Image's folder.
-	* @param file	File	
 	* @return SaaSposeResponse
 	*/
 
-  public SaaSposeResponse PutBarcodeGenerateFile (String name, String text, String type, String format, Float resolutionX, Float resolutionY, Float dimensionX, Float dimensionY, String codeLocation, String grUnit, String autoSize, Float barHeight, Float imageHeight, Float imageWidth, String imageQuality, Float rotAngle, Float topMargin, Float bottomMargin, Float leftMargin, Float rightMargin, String enableChecksum, String storage, String folder, File file) {
+  public SaaSposeResponse PutBarcodeGenerateFile (String name, String text, String type, String format, Float resolutionX, Float resolutionY, Float dimensionX, Float dimensionY, String codeLocation, String grUnit, String autoSize, Float barHeight, Float imageHeight, Float imageWidth, String imageQuality, Float rotAngle, Float topMargin, Float bottomMargin, Float leftMargin, Float rightMargin, String enableChecksum, String storage, String folder) {
     Object postBody = null;
     // verify required params are set
-    if(name == null || file == null	 ) {
+    if(name == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/barcode/{name}/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;toFormat={toFormat}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;codeLocation={codeLocation}&amp;grUnit={grUnit}&amp;autoSize={autoSize}&amp;barHeight={barHeight}&amp;imageHeight={imageHeight}&amp;imageWidth={imageWidth}&amp;imageQuality={imageQuality}&amp;rotAngle={rotAngle}&amp;topMargin={topMargin}&amp;bottomMargin={bottomMargin}&amp;leftMargin={leftMargin}&amp;rightMargin={rightMargin}&amp;enableChecksum={enableChecksum}&amp;storage={storage}&amp;folder={folder}".replaceAll("\\{format\\}","json");
+    String resourcePath = "/barcode/{name}/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;format={format}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;codeLocation={codeLocation}&amp;grUnit={grUnit}&amp;autoSize={autoSize}&amp;barHeight={barHeight}&amp;imageHeight={imageHeight}&amp;imageWidth={imageWidth}&amp;imageQuality={imageQuality}&amp;rotAngle={rotAngle}&amp;topMargin={topMargin}&amp;bottomMargin={bottomMargin}&amp;leftMargin={leftMargin}&amp;rightMargin={rightMargin}&amp;enableChecksum={enableChecksum}&amp;storage={storage}&amp;folder={folder}";
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    
+    String method = "PUT";
+    String contentType = "application/json";
+
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    
 
-    if(name!=null)
-      queryParams.put("name", String.valueOf(name));
-    if(text!=null)
-      queryParams.put("text", String.valueOf(text));
-    if(type!=null)
-      queryParams.put("type", String.valueOf(type));
-    if(format!=null)
-      queryParams.put("format", String.valueOf(format));
-    if(resolutionX!=null)
-      queryParams.put("resolutionX", String.valueOf(resolutionX));
-    if(resolutionY!=null)
-      queryParams.put("resolutionY", String.valueOf(resolutionY));
-    if(dimensionX!=null)
-      queryParams.put("dimensionX", String.valueOf(dimensionX));
-    if(dimensionY!=null)
-      queryParams.put("dimensionY", String.valueOf(dimensionY));
-    if(codeLocation!=null)
-      queryParams.put("codeLocation", String.valueOf(codeLocation));
-    if(grUnit!=null)
-      queryParams.put("grUnit", String.valueOf(grUnit));
-    if(autoSize!=null)
-      queryParams.put("autoSize", String.valueOf(autoSize));
-    if(barHeight!=null)
-      queryParams.put("barHeight", String.valueOf(barHeight));
-    if(imageHeight!=null)
-      queryParams.put("imageHeight", String.valueOf(imageHeight));
-    if(imageWidth!=null)
-      queryParams.put("imageWidth", String.valueOf(imageWidth));
-    if(imageQuality!=null)
-      queryParams.put("imageQuality", String.valueOf(imageQuality));
-    if(rotAngle!=null)
-      queryParams.put("rotAngle", String.valueOf(rotAngle));
-    if(topMargin!=null)
-      queryParams.put("topMargin", String.valueOf(topMargin));
-    if(bottomMargin!=null)
-      queryParams.put("bottomMargin", String.valueOf(bottomMargin));
-    if(leftMargin!=null)
-      queryParams.put("leftMargin", String.valueOf(leftMargin));
-    if(rightMargin!=null)
-      queryParams.put("rightMargin", String.valueOf(rightMargin));
-    if(enableChecksum!=null)
-      queryParams.put("enableChecksum", String.valueOf(enableChecksum));
-    if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
-    if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
-    String[] contentTypes = {
-      "multipart/form-data"};
+    if(name!=null){
+        resourcePath = resourcePath.replace("{name}", apiInvoker.toPathValue(name));}
+  
+    if(text!=null){
+        resourcePath = resourcePath.replace("{text}", apiInvoker.toPathValue(text));}
 
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
-      mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
-        postBody = mp;
-    }
+    if(type!=null){
+        resourcePath = resourcePath.replace("{type}", apiInvoker.toPathValue(type));}
+        
+    if(format!=null){
+        resourcePath = resourcePath.replace("{format}", apiInvoker.toPathValue(format));}
+        
+    if(resolutionX!=null){
+        resourcePath = resourcePath.replace("{resolutionX}", apiInvoker.toPathValue(resolutionX));}
+        
+    if(resolutionY!=null){
+        resourcePath = resourcePath.replace("{resolutionY}", apiInvoker.toPathValue(resolutionY));}
+        
+    if(dimensionX!=null){
+        resourcePath = resourcePath.replace("{dimensionX}", apiInvoker.toPathValue(dimensionX));}
+        
+    if(dimensionY!=null){
+        resourcePath = resourcePath.replace("{dimensionY}", apiInvoker.toPathValue(dimensionY));}
+        
+    if(codeLocation!=null){
+        resourcePath = resourcePath.replace("{codeLocation}", apiInvoker.toPathValue(codeLocation));}
+        
+    if(grUnit!=null){
+        resourcePath = resourcePath.replace("{grUnit}", apiInvoker.toPathValue(grUnit));}
+        
+    if(autoSize!=null){
+        resourcePath = resourcePath.replace("{autoSize}", apiInvoker.toPathValue(autoSize));}
+        
+    if(barHeight!=null){
+        resourcePath = resourcePath.replace("{barHeight}", apiInvoker.toPathValue(barHeight));}
+        
+    if(imageHeight!=null){
+        resourcePath = resourcePath.replace("{imageHeight}", apiInvoker.toPathValue(imageHeight));}
+        
+    if(imageWidth!=null){
+        resourcePath = resourcePath.replace("{imageWidth}", apiInvoker.toPathValue(imageWidth));}
+        
+    if(imageQuality!=null){
+        resourcePath = resourcePath.replace("{imageQuality}", apiInvoker.toPathValue(imageQuality));}
+        
+    if(rotAngle!=null){
+        resourcePath = resourcePath.replace("{rotAngle}", apiInvoker.toPathValue(rotAngle));}
+        
+    if(topMargin!=null){
+        resourcePath = resourcePath.replace("{topMargin}", apiInvoker.toPathValue(topMargin));}
+        
+    if(bottomMargin!=null){
+        resourcePath = resourcePath.replace("{bottomMargin}", apiInvoker.toPathValue(bottomMargin));}
+        
+    if(leftMargin!=null){
+        resourcePath = resourcePath.replace("{leftMargin}", apiInvoker.toPathValue(leftMargin));}
+        
+    if(rightMargin!=null){
+        resourcePath = resourcePath.replace("{rightMargin}", apiInvoker.toPathValue(rightMargin));}
+        
+    if(enableChecksum!=null){
+        resourcePath = resourcePath.replace("{enableChecksum}", apiInvoker.toPathValue(enableChecksum));}
+        
+    if(storage!=null){
+        resourcePath = resourcePath.replace("{storage}", apiInvoker.toPathValue(storage));}
+        
+    if(folder!=null){
+        resourcePath = resourcePath.replace("{folder}", apiInvoker.toPathValue(folder));}
+        
+    
     try {
-		response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+		response = apiInvoker.invokeAPI(basePath, resourcePath, method, queryParams, postBody, headerParams, null, contentType);
 		return (SaaSposeResponse) ApiInvoker.deserialize(response, "", SaaSposeResponse.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -354,7 +383,6 @@ public class BarcodeApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PutBarcodeRecognizeFromBody
 	* Recognition of a barcode from file on server with parameters in body.
@@ -372,32 +400,28 @@ public class BarcodeApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/barcode/{name}/recognize/?appSid={appSid}&amp;type={type}&amp;folder={folder}".replaceAll("\\{format\\}","json");
+    String resourcePath = "/barcode/{name}/recognize/?appSid={appSid}&amp;type={type}&amp;folder={folder}";
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+
+    String method = "PUT";
+    String contentType = "application/json";
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
+    
+    if(name!=null){
+        resourcePath = resourcePath.replace("{name}", apiInvoker.toPathValue(name));}
+  
+    if(type!=null){
+        resourcePath = resourcePath.replace("{type}", apiInvoker.toPathValue(type));}
 
-    if(name!=null)
-      queryParams.put("name", String.valueOf(name));
-    if(type!=null)
-      queryParams.put("type", String.valueOf(type));
-    if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
-    String[] contentTypes = {
-      "application/json"};
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
+    if(folder!=null){
+        resourcePath = resourcePath.replace("{folder}", apiInvoker.toPathValue(folder));}
+    
+    
     try {
-		response = apiInvoker.invokeAPI(basePath, path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+		response = apiInvoker.invokeAPI(basePath, resourcePath, method, queryParams, postBody, headerParams, null, contentType);
 		return (BarcodeResponseList) ApiInvoker.deserialize(response, "", BarcodeResponseList.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
