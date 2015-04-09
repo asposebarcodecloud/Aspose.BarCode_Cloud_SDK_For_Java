@@ -60,8 +60,8 @@ public class BarcodeApi {
   public ResponseMessage GetBarcodeGenerate (String text, String type, String format, Float resolutionX, Float resolutionY, Float dimensionX, Float dimensionY, String enableChecksum) {
     Object postBody = null;
     // create path and map variables
-    String resourcePath = "/barcode/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;format={format}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;enableChecksum={enableChecksum}";    
-    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    String resourcePath = "/barcode/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;toFormat={toFormat}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;enableChecksum={enableChecksum}";    
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     
     String method = "GET";
     String contentType = "application/json";
@@ -135,7 +135,7 @@ public class BarcodeApi {
     // create path and map variables
     String resourcePath = "/barcode/{name}/recognize/?appSid={appSid}&amp;type={type}&amp;checksumValidation={checksumValidation}&amp;stripFnc={stripFnc}&amp;rotationAngle={rotationAngle}&amp;barcodesCount={barcodesCount}&amp;rectX={rectX}&amp;rectY={rectY}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;storage={storage}&amp;folder={folder}";
 
-    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     
     String method = "GET";
     String contentType = "application/json";
@@ -215,7 +215,7 @@ public class BarcodeApi {
     }
     // create path and map variables
     String resourcePath = "/barcode/recognize/?appSid={appSid}&amp;type={type}&amp;checksumValidation={checksumValidation}&amp;stripFnc={stripFnc}&amp;rotationAngle={rotationAngle}&amp;url={url}";
-    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     
     String method = "POST";
     String contentType = "application/json";
@@ -289,8 +289,8 @@ public class BarcodeApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String resourcePath = "/barcode/{name}/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;format={format}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;codeLocation={codeLocation}&amp;grUnit={grUnit}&amp;autoSize={autoSize}&amp;barHeight={barHeight}&amp;imageHeight={imageHeight}&amp;imageWidth={imageWidth}&amp;imageQuality={imageQuality}&amp;rotAngle={rotAngle}&amp;topMargin={topMargin}&amp;bottomMargin={bottomMargin}&amp;leftMargin={leftMargin}&amp;rightMargin={rightMargin}&amp;enableChecksum={enableChecksum}&amp;storage={storage}&amp;folder={folder}";
-    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    String resourcePath = "/barcode/{name}/generate/?appSid={appSid}&amp;text={text}&amp;type={type}&amp;toFormat={toFormat}&amp;resolutionX={resolutionX}&amp;resolutionY={resolutionY}&amp;dimensionX={dimensionX}&amp;dimensionY={dimensionY}&amp;codeLocation={codeLocation}&amp;grUnit={grUnit}&amp;autoSize={autoSize}&amp;barHeight={barHeight}&amp;imageHeight={imageHeight}&amp;imageWidth={imageWidth}&amp;imageQuality={imageQuality}&amp;rotAngle={rotAngle}&amp;topMargin={topMargin}&amp;bottomMargin={bottomMargin}&amp;leftMargin={leftMargin}&amp;rightMargin={rightMargin}&amp;enableChecksum={enableChecksum}&amp;storage={storage}&amp;folder={folder}";
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     
     String method = "PUT";
     String contentType = "application/json";
@@ -401,7 +401,7 @@ public class BarcodeApi {
     }
     // create path and map variables
     String resourcePath = "/barcode/{name}/recognize/?appSid={appSid}&amp;type={type}&amp;folder={folder}";
-    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?");
+    resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
 
     String method = "PUT";
     String contentType = "application/json";
