@@ -1,66 +1,52 @@
 package com.aspose.barcode.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class BarcodeResponseList {
+  private String Code = null;
+  private String Status = null;
+  /**
+         * getCode
+         * Gets String
+         * @return Code
+         */
+  public String getCode() {
+    return Code;
+  }
 
-private List<Barcode> Barcodes = new ArrayList<Barcode>();
-private Integer Code = 200;
-private String Status = "OK";
+        /**
+         * setCode
+         * Sets String
+         * @param Code String
+         */
+  public void setCode(String Code) {
+    this.Code = Code;
+  }
 
-/**
-* 
-* @return
-* The Barcodes
-*/
-public List<Barcode> getBarcodes() {
-return Barcodes;
-}
+  /**
+         * getStatus
+         * Gets String
+         * @return Status
+         */
+  public String getStatus() {
+    return Status;
+  }
 
-/**
-* 
-* @param Barcodes
-* The Barcodes
-*/
-public void setBarcodes(List<Barcode> Barcodes) {
-this.Barcodes = Barcodes;
-}
+        /**
+         * setStatus
+         * Sets String
+         * @param Status String
+         */
+  public void setStatus(String Status) {
+    this.Status = Status;
+  }
 
-/**
-* 
-* @return
-* The Code
-*/
-public Integer getCode() {
-return Code;
-}
-
-/**
-* 
-* @param Code
-* The Code
-*/
-public void setCode(Integer Code) {
-this.Code = Code;
-}
-
-/**
-* 
-* @return
-* The Status
-*/
-public String getStatus() {
-return Status;
-}
-
-/**
-* 
-* @param Status
-* The Status
-*/
-public void setStatus(String Status) {
-this.Status = Status;
-}
+  @Override
+  public String toString()  {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class BarcodeResponseList {\n");
+    sb.append("  Code: ").append(Code).append("\n");
+    sb.append("  Status: ").append(Status).append("\n");
+    sb.append("}\n");
+    return sb.toString();
+  }
 }
 

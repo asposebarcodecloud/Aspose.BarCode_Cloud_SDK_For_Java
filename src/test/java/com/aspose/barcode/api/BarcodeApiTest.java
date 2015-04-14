@@ -144,7 +144,7 @@ public class BarcodeApiTest {
     @Test
     public void testPutBarcodeGenerateFile() {
         System.out.println("PutBarcodeGenerateFile");
-        String name = "NewFileWithBarcode.jpeg";
+        String name = "barcode";
         String text = "newbarcode";
         String type = "1";
         String format = "jpeg";
@@ -166,21 +166,22 @@ public class BarcodeApiTest {
         Float rightMargin = 0.0f;
         String enableChecksum = "";
         String storage = "";
-        String folder = "";		
-        
-        BarcodeApi instance = new BarcodeApi("http://api.aspose.com/v1.1", apiKey, appSID);;
+        String folder = "";             
+        File file ;
+                
         SaaSposeResponse expResult = new SaaSposeResponse();
-		expResult.setStatus("OK");
-		
+                expResult.setStatus("OK");
+                
         try{
-		
-            SaaSposeResponse result = instance.PutBarcodeGenerateFile(name, text, type, format, resolutionX, resolutionY, dimensionX, dimensionY, codeLocation, grUnit, autoSize, barHeight, imageHeight, imageWidth, imageQuality, rotAngle, topMargin, bottomMargin, leftMargin, rightMargin, enableChecksum, storage, folder);
-			assertEquals(expResult.getStatus(),result.getStatus());
-			
+                        file = new File(getClass().getResource("/barcodePng.png").toURI());
+            SaaSposeResponse result = barcode.PutBarcodeGenerateFile(name, text, type, format, resolutionX, resolutionY, dimensionX, dimensionY, codeLocation, grUnit, autoSize, barHeight, imageHeight, imageWidth, imageQuality, rotAngle, topMargin, bottomMargin, leftMargin, rightMargin, enableChecksum, storage, folder, null);
+                        assertEquals(expResult.getStatus(),result.getStatus());
+        }catch(java.net.URISyntaxException uriExp){
+                        System.out.println("URI exp:"+uriExp.getMessage());                     
         }catch(ApiException apiException){
-			System.out.println("exp:"+apiException.getMessage());
+                        System.out.println("exp:"+apiException.getMessage());
             assertNull(apiException);
-		}
+                }
     }
 
     @Test
@@ -194,11 +195,10 @@ public class BarcodeApiTest {
         body.setStripFNC(true);
         body.setChecksumValidation(ChecksumValidation.OFF);
         
-        BarcodeApi instance = new BarcodeApi("http://api.aspose.com/v1.1", apiKey, appSID);;
         BarcodeResponseList expResult = new BarcodeResponseList();
 		expResult.setStatus("OK");
         try{
-            BarcodeResponseList result = instance.PutBarcodeRecognizeFromBody(name, type, folder, body);
+            BarcodeResponseList result = barcode.PutBarcodeRecognizeFromBody(name, type, folder, body);
 			assertEquals(expResult.getStatus(),result.getStatus());
         }catch(ApiException apiException){
 			System.out.println("exp:"+apiException.getMessage());
