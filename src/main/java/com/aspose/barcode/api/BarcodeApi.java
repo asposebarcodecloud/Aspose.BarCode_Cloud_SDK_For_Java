@@ -69,20 +69,36 @@ public class BarcodeApi {
 
     if(text!=null)
 	  resourcePath = resourcePath.replace("{" + "text" + "}" , apiInvoker.toPathValue(text));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]text.*?(?=&|\\?|$)", "");
     if(type!=null)
 	  resourcePath = resourcePath.replace("{" + "type" + "}" , apiInvoker.toPathValue(type));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]type.*?(?=&|\\?|$)", "");
     if(format!=null)
 	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(resolutionX!=null)
 	  resourcePath = resourcePath.replace("{" + "resolutionX" + "}" , apiInvoker.toPathValue(resolutionX));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]resolutionX.*?(?=&|\\?|$)", "");
     if(resolutionY!=null)
 	  resourcePath = resourcePath.replace("{" + "resolutionY" + "}" , apiInvoker.toPathValue(resolutionY));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]resolutionY.*?(?=&|\\?|$)", "");
     if(dimensionX!=null)
 	  resourcePath = resourcePath.replace("{" + "dimensionX" + "}" , apiInvoker.toPathValue(dimensionX));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]dimensionX.*?(?=&|\\?|$)", "");
     if(dimensionY!=null)
 	  resourcePath = resourcePath.replace("{" + "dimensionY" + "}" , apiInvoker.toPathValue(dimensionY));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]dimensionY.*?(?=&|\\?|$)", "");
     if(enableChecksum!=null)
 	  resourcePath = resourcePath.replace("{" + "enableChecksum" + "}" , apiInvoker.toPathValue(enableChecksum));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]enableChecksum.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
@@ -134,28 +150,52 @@ try {
 
     if(name!=null)
 	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(type!=null)
 	  resourcePath = resourcePath.replace("{" + "type" + "}" , apiInvoker.toPathValue(type));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]type.*?(?=&|\\?|$)", "");
     if(checksumValidation!=null)
 	  resourcePath = resourcePath.replace("{" + "checksumValidation" + "}" , apiInvoker.toPathValue(checksumValidation));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]checksumValidation.*?(?=&|\\?|$)", "");
     if(stripFnc!=null)
 	  resourcePath = resourcePath.replace("{" + "stripFnc" + "}" , apiInvoker.toPathValue(stripFnc));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]stripFnc.*?(?=&|\\?|$)", "");
     if(rotationAngle!=null)
 	  resourcePath = resourcePath.replace("{" + "rotationAngle" + "}" , apiInvoker.toPathValue(rotationAngle));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rotationAngle.*?(?=&|\\?|$)", "");
     if(barcodesCount!=null)
 	  resourcePath = resourcePath.replace("{" + "barcodesCount" + "}" , apiInvoker.toPathValue(barcodesCount));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]barcodesCount.*?(?=&|\\?|$)", "");
     if(rectX!=null)
 	  resourcePath = resourcePath.replace("{" + "rectX" + "}" , apiInvoker.toPathValue(rectX));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectX.*?(?=&|\\?|$)", "");
     if(rectY!=null)
 	  resourcePath = resourcePath.replace("{" + "rectY" + "}" , apiInvoker.toPathValue(rectY));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectY.*?(?=&|\\?|$)", "");
     if(rectWidth!=null)
 	  resourcePath = resourcePath.replace("{" + "rectWidth" + "}" , apiInvoker.toPathValue(rectWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectWidth.*?(?=&|\\?|$)", "");
     if(rectHeight!=null)
 	  resourcePath = resourcePath.replace("{" + "rectHeight" + "}" , apiInvoker.toPathValue(rectHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectHeight.*?(?=&|\\?|$)", "");
     if(storage!=null)
 	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     if(folder!=null)
 	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
@@ -201,14 +241,24 @@ try {
 
     if(type!=null)
 	  resourcePath = resourcePath.replace("{" + "type" + "}" , apiInvoker.toPathValue(type));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]type.*?(?=&|\\?|$)", "");
     if(checksumValidation!=null)
 	  resourcePath = resourcePath.replace("{" + "checksumValidation" + "}" , apiInvoker.toPathValue(checksumValidation));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]checksumValidation.*?(?=&|\\?|$)", "");
     if(stripFnc!=null)
 	  resourcePath = resourcePath.replace("{" + "stripFnc" + "}" , apiInvoker.toPathValue(stripFnc));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]stripFnc.*?(?=&|\\?|$)", "");
     if(rotationAngle!=null)
 	  resourcePath = resourcePath.replace("{" + "rotationAngle" + "}" , apiInvoker.toPathValue(rotationAngle));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rotationAngle.*?(?=&|\\?|$)", "");
     if(url!=null)
 	  resourcePath = resourcePath.replace("{" + "url" + "}" , apiInvoker.toPathValue(url));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]url.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
@@ -255,6 +305,8 @@ try {
 
     if(format!=null)
 	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
@@ -323,62 +375,111 @@ try {
 
     if(name!=null)
 	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(text!=null)
 	  resourcePath = resourcePath.replace("{" + "text" + "}" , apiInvoker.toPathValue(text));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]text.*?(?=&|\\?|$)", "");
     if(type!=null)
 	  resourcePath = resourcePath.replace("{" + "type" + "}" , apiInvoker.toPathValue(type));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]type.*?(?=&|\\?|$)", "");
     if(format!=null)
 	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(resolutionX!=null)
 	  resourcePath = resourcePath.replace("{" + "resolutionX" + "}" , apiInvoker.toPathValue(resolutionX));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]resolutionX.*?(?=&|\\?|$)", "");
     if(resolutionY!=null)
 	  resourcePath = resourcePath.replace("{" + "resolutionY" + "}" , apiInvoker.toPathValue(resolutionY));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]resolutionY.*?(?=&|\\?|$)", "");
     if(dimensionX!=null)
 	  resourcePath = resourcePath.replace("{" + "dimensionX" + "}" , apiInvoker.toPathValue(dimensionX));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]dimensionX.*?(?=&|\\?|$)", "");
     if(dimensionY!=null)
 	  resourcePath = resourcePath.replace("{" + "dimensionY" + "}" , apiInvoker.toPathValue(dimensionY));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]dimensionY.*?(?=&|\\?|$)", "");
     if(codeLocation!=null)
 	  resourcePath = resourcePath.replace("{" + "codeLocation" + "}" , apiInvoker.toPathValue(codeLocation));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]codeLocation.*?(?=&|\\?|$)", "");
     if(grUnit!=null)
 	  resourcePath = resourcePath.replace("{" + "grUnit" + "}" , apiInvoker.toPathValue(grUnit));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]grUnit.*?(?=&|\\?|$)", "");
     if(autoSize!=null)
 	  resourcePath = resourcePath.replace("{" + "autoSize" + "}" , apiInvoker.toPathValue(autoSize));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]autoSize.*?(?=&|\\?|$)", "");
     if(barHeight!=null)
 	  resourcePath = resourcePath.replace("{" + "barHeight" + "}" , apiInvoker.toPathValue(barHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]barHeight.*?(?=&|\\?|$)", "");
     if(imageHeight!=null)
 	  resourcePath = resourcePath.replace("{" + "imageHeight" + "}" , apiInvoker.toPathValue(imageHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]imageHeight.*?(?=&|\\?|$)", "");
     if(imageWidth!=null)
 	  resourcePath = resourcePath.replace("{" + "imageWidth" + "}" , apiInvoker.toPathValue(imageWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]imageWidth.*?(?=&|\\?|$)", "");
     if(imageQuality!=null)
 	  resourcePath = resourcePath.replace("{" + "imageQuality" + "}" , apiInvoker.toPathValue(imageQuality));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]imageQuality.*?(?=&|\\?|$)", "");
     if(rotAngle!=null)
 	  resourcePath = resourcePath.replace("{" + "rotAngle" + "}" , apiInvoker.toPathValue(rotAngle));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rotAngle.*?(?=&|\\?|$)", "");
     if(topMargin!=null)
 	  resourcePath = resourcePath.replace("{" + "topMargin" + "}" , apiInvoker.toPathValue(topMargin));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]topMargin.*?(?=&|\\?|$)", "");
     if(bottomMargin!=null)
 	  resourcePath = resourcePath.replace("{" + "bottomMargin" + "}" , apiInvoker.toPathValue(bottomMargin));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]bottomMargin.*?(?=&|\\?|$)", "");
     if(leftMargin!=null)
 	  resourcePath = resourcePath.replace("{" + "leftMargin" + "}" , apiInvoker.toPathValue(leftMargin));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]leftMargin.*?(?=&|\\?|$)", "");
     if(rightMargin!=null)
 	  resourcePath = resourcePath.replace("{" + "rightMargin" + "}" , apiInvoker.toPathValue(rightMargin));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rightMargin.*?(?=&|\\?|$)", "");
     if(enableChecksum!=null)
 	  resourcePath = resourcePath.replace("{" + "enableChecksum" + "}" , apiInvoker.toPathValue(enableChecksum));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]enableChecksum.*?(?=&|\\?|$)", "");
     if(storage!=null)
 	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     if(folder!=null)
 	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(file!=null){
-        if(contentType.startsWith("multipart/form-data")) {      
-              FormDataMultiPart mp = new FormDataMultiPart();
-              mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-                postBody = mp;
-            }
-    }
+                if (file != null) {
+                        if (contentType.startsWith("multipart/form-data")) {
+                                FormDataMultiPart mp = new FormDataMultiPart();
+                                mp.field("file",
+                                                file,
+                                                MediaType.MULTIPART_FORM_DATA_TYPE);
+                                postBody = mp;
+                        }
+
+                }
 try {
 		response = apiInvoker.invokeAPI(basePath, resourcePath, "PUT", queryParams, postBody, headerParams, formParams, contentType);
 		return (SaaSposeResponse) ApiInvoker.deserialize(response, "", SaaSposeResponse.class);
@@ -417,10 +518,16 @@ try {
 
     if(name!=null)
 	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(type!=null)
 	  resourcePath = resourcePath.replace("{" + "type" + "}" , apiInvoker.toPathValue(type));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]type.*?(?=&|\\?|$)", "");
     if(folder!=null)
 	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
@@ -464,10 +571,16 @@ try {
 
     if(name!=null)
 	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(format!=null)
 	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(folder!=null)
 	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
