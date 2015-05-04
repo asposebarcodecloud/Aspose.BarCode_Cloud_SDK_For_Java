@@ -1,9 +1,8 @@
 package com.aspose.barcode.api;
 
-import com.aspose.client.ApiException;
-import com.aspose.client.ApiInvoker;
-import com.aspose.client.ApiInvokerResponse;
-
+import com.aspose.barcode.client.ApiException;
+import com.aspose.barcode.client.ApiInvoker;
+import com.aspose.barcode.client.ApiInvokerResponse;
 import com.aspose.barcode.model.ResponseMessage;
 import com.aspose.barcode.model.BarcodeResponseList;
 import com.aspose.barcode.model.BarcodeReader;
@@ -26,11 +25,26 @@ public class BarcodeApi {
     apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
   }
 
+  public BarcodeApi(String basePath, String apiKey, String appSid, boolean isDebug) {
+          this.basePath = basePath;
+          apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+          apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+          if(isDebug)
+                  apiInvoker.enableDebug();
+        }
+  
   public BarcodeApi(String apiKey, String appSid) {
     apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
     apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
   }
 
+  public BarcodeApi(String apiKey, String appSid, boolean isDebug) {
+          apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+          apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+          if(isDebug)
+                  apiInvoker.enableDebug();
+        }
+  
   public ApiInvoker getInvoker() {
     return apiInvoker;
   }

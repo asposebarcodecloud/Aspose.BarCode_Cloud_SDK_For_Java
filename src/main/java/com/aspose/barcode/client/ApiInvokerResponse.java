@@ -1,4 +1,4 @@
-package com.aspose.client;
+package com.aspose.barcode.client;
 
 import java.io.InputStream;
 

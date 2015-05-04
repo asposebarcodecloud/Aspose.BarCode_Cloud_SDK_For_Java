@@ -15,12 +15,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.aspose.barcode.client.ApiException;
 import com.aspose.barcode.model.BarcodeReader;
 import com.aspose.barcode.model.BarcodeResponseList;
 import com.aspose.barcode.model.ChecksumValidation;
 import com.aspose.barcode.model.ResponseMessage;
 import com.aspose.barcode.model.SaaSposeResponse;
-import com.aspose.client.ApiException;
 
 
 public class BarcodeApiTest {
